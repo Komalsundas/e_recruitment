@@ -67,6 +67,14 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::get('/listVacancy/{id}', [AdminController::class, 'viewVacancy'])->name('view-vacancy');
     Route::get('/showcanidate/{id}', [AdminController::class, 'showcanidate'])->name('showcanidate');
     Route::get('/viewCandidate/{id}', [AdminController::class, 'viewCandidate'])->name('view-candidate');
+
+    
+
+    
+
+
+
+
 });
 
 // Route::get('/candidate', function () {

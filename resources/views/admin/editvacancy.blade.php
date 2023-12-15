@@ -135,18 +135,22 @@
                     // Show delete modal when delete button is clicked
                     $(".deleteRow").on("click", function () {
                         $("#deleteModal").modal("show");
-                        
+            
                         // Get the row to be deleted (you might need to adjust this based on your HTML structure)
                         rowToDelete = $(this).closest("tr");
                     });
             
                     // Handle deletion on modal confirmation
                     $("#confirmDelete").on("click", function () {
-                        rowToDelete.remove();
-                        $("#deleteModal").modal("hide");
-            
                         // Show a success message (you might want to customize this)
                         alert("Deleted successfully");
+            
+                        // Explicitly submit the form for deletion
+                        $("#deleteForm").submit();
+            
+                        // Optional: If you want to remove the row without waiting for the form submission
+                        // rowToDelete.remove();
+                        // $("#deleteModal").modal("hide");
                     });
                 });
             </script>
@@ -154,7 +158,7 @@
             <form action="{{ route('delete-vacancy', $vacancy->id) }}" method="POST" id="deleteForm">
                 @csrf
                 @method('DELETE')
-                <button type="button" class="btn-danger" id="deleteBtn" data-toggle="modal" data-target="#deleteModal">
+                <button type="submit" class="btn-danger" id="deleteBtn" data-toggle="modal" data-target="#deleteModal">
                     Delete
                 </button>
             </form>

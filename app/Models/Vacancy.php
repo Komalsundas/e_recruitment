@@ -19,4 +19,5 @@ class Vacancy extends Model
         'tor',
         'dateline'
 ];
+
 }

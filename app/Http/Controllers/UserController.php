@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Applicant;
 use App\Models\Education;
 use Illuminate\Support\Facades\DB;
+use App\Models\Vacancy;
 
 class UserController extends Controller
 {
@@ -81,6 +82,7 @@ class UserController extends Controller
             'cv' => $cv_path,
             'mc' => $mc_path,
             'vacancy_id'=>$request->vacancy_id,
+            'final_score'=>$request->final_score,
         ]);
         $applicant->save();
 
@@ -234,44 +236,6 @@ class UserController extends Controller
             }
         }
 
-        // $experience= new experience([
-        //     'company' => $request->company,
-        //     'year' => $request->x_year,
-        //     'course_name' => "",
-        //     'grade' => 10,
-        //     'stream' =>  'N',
-        //     'eng' => $request->x_eng,
-        //     'dzo' => $request->x_dzo,
-        //     'math' =>$request->x_mat,
-        //     'phy' => $request->x_phy,
-        //     'che' => $request->x_che,
-        //     'bio' => $request->x_bio,
-        //     'his' => $request->x_his,
-        //     'geo' => $request->x_geo,
-        //     'eco' => $request->x_eco,
-        //     'it' =>  $request->x_it,
-        //     'com' => 0,
-        //     'acc' => 0,
-        //     'aggregate' => $request->x_percentage,
-        //     'marksheet'=>$request->x_marksheet,
-        //     'applicant_id'=>$applicant->id
-        // ]);
-        // $x_education->save();
-
-        // Store the data in the database
-        // You can use Eloquent or any other method here
-        // $validatedAcademicData = $request->validate([
-        //     // Your validation rules for academic marks
-        // ]);
-    
-        // Create records in both models
-        // $applicantDetails = Applicant::create($validatedUserData);
-        // $academicMarks = Education::create($validatedAcademicData);
-    
-        // You can associate the academic marks with the user if needed
-        // $applicantDetails->academicMarks()->associate($academicMarks);
-    
-        // Redirect back or to a success page
         return redirect()->back()->with('success', 'Form submitted successfully!');
        
     }
@@ -280,9 +244,25 @@ class UserController extends Controller
      * Display the specified vacancy.
      */
     public function viewForm(int $id)
-    {
+{
+    $vacancy = Vacancy::find($id);
+    
+    // Check if $vacancy is not null before accessing its properties
+    if ($vacancy) {
         $vacancy_id = $id;
-    return view('form', compact('vacancy_id'));
+        $minQualification = $vacancy->minQualification;
+
+        //  dd($minQualification); // Add this line to dump the value
+
+
+        return view('form', compact('vacancy_id', 'minQualification'));
+    } else {
+        // Handle the case where no vacancy is found with the given $id
+        abort(404);
+    }
 }
+
+    
+
 
 }

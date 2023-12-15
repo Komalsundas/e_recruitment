@@ -23,6 +23,10 @@ class AdminController extends Controller
         $empType = EmploymentType::all();
         return view('admin.createVacancy', compact('minQuali', 'empType'));
     }
+    
+
+
+
 
     /**
      * save and edit vaccancy.
@@ -167,17 +171,28 @@ public function deleteVacancy($id)
 //     return view('admin.showcanidate', compact('applicant'));
 // }
 
-public function showcanidate(int $id) {
-    $applicants = DB::table('applicants')
-                    ->join('education', 'applicants.id', '=', 'education.applicant_id')
-                    ->where('applicants.vacancy_id', $id)
-                    ->orderByDesc('education.aggregate') // Order by aggregate marks in descending order
-                    ->select('applicants.*', 'education.*')
-                    ->get();
+public function showcanidate(int $id)
+    {
+        // Use the new method to get applicants in descending order of the final score
+        $applicant = $this->showCandidatesOrdered($id);
 
-    return view('admin.showcanidate', compact('applicants'));
-}
+        return view('admin.showcanidate', compact('applicant'));
+    }
 
+    // New method to retrieve applicants and order them by the final score
+    public function showCandidatesOrdered(int $id)
+    {
+        $applicant = DB::table('applicants as a')
+            ->join('vacancies as v', 'v.id', 'a.vacancy_id')
+            ->select('a.*', 'v.position')
+            ->where('v.id', $id)
+            ->orderByDesc('a.final_score') // Order by final score in descending order
+            ->get();
+
+        return $applicant;
+    }
+
+// 
 
 
  /**
@@ -196,7 +211,6 @@ public function showcanidate(int $id) {
                     ->get();
     return view('userprofile', compact('applicant', 'education'));
 }
-
 
 
 }

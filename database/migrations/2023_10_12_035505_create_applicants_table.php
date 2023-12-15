@@ -29,6 +29,7 @@ return new class extends Migration
             $table->string('cv');
             $table->string('mc');
             $table->string('vacancy_id');
+            $table->string('final_score');
             $table->timestamps();
     
         });

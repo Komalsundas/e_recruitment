@@ -24,7 +24,8 @@ class Applicant extends Model
         'cidcopy',
         'cv',
         'mc',
-        'vacancy_id'
+        'vacancy_id',
+        'final_score'
         // Add other fields as needed
     ];
 }

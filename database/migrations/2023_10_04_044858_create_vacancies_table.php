@@ -29,8 +29,8 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+    public function minQualification()
     {
-        Schema::dropIfExists('vacancies');
+        return $this->hasOne(MinQualification::class);
     }
 };
