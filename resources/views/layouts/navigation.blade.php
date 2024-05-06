@@ -16,16 +16,27 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
-            </div>
-            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                <x-nav-link :href="route('create-vacancy')" :active="request()->routeIs('create-vacancy')">
-                    {{ __('Create Vacancy') }}
-                </x-nav-link>
-            </div>
-            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                <x-nav-link :href="route('show-vacancy')" :active="request()->routeIs('show-vacancy')">
-                    {{ __('List Vacancy') }}
-                </x-nav-link>
+                
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('create-vacancy')" :active="request()->routeIs('create-vacancy')">
+                        {{ __('Create Vacancy') }}
+                    </x-nav-link>
+                </div>
+                
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('show-vacancy')" :active="request()->routeIs('show-vacancy')">
+                        {{ __('List Vacancy') }}
+                    </x-nav-link>
+                </div>
+
+                <!-- Only show this link for panel users -->
+                @if(auth()->check() && \App\Models\Panel::where('username', auth()->user()->username)->exists())
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('shortlisted-candidates')" :active="request()->routeIs('shortlisted-candidates')">
+                            {{ __('Shortlisted Candidate') }}
+                        </x-nav-link>
+                    </div>
+                @endif
             </div>
 
             <!-- Settings Dropdown -->

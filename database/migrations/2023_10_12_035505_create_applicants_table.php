@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('applicants', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('cid');
+            $table->string('cid')->unique();
             $table->string('dob');
             $table->string('contact');
+            $table->string('acontact');
             $table->string('gender');
             $table->string('email');
             $table->string('dzongkhag');
@@ -28,10 +29,20 @@ return new class extends Migration
             $table->string('cidcopy');
             $table->string('cv');
             $table->string('mc');
+            $table->string('noc');
             $table->string('vacancy_id');
-            $table->string('final_score');
+            $table->string('x_percentage')->nullable();
+            $table->string('xii_percent')->nullable();
+            $table->string('degree_percentage')->nullable();
+            $table->string('final_score')->nullable();
+            $table->string('status')->default('In process');
+            $table->boolean('shortlisted')->default(false);
+            // $table->boolean('selected')->default(false);
+            $table->integer('selected')->default(0);
+            $table->integer('standby')->default(0);
+
             $table->timestamps();
-    
+
         });
     }
 

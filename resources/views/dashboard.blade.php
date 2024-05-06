@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Network Operation Center</title>
+        <title>BTL_eRecruitment</title>
         <!-- CSS -->
         <link rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -35,15 +35,14 @@
                                         <div class="small-box bg-info">
                                             <div class="inner">
                                                 <p>604</p>
-                                                <p>Total Employee</p>
+                                                <p>Total vacancy</p>
                                             </div>
-
                                             <div class="icon">
                                                 <i class="ion ion-android-contacts"></i>
                                             </div>
-                                                <a href="#" class="small-box-footer"><i
-                                            class="fas fa-arrow-circle-right"></i></a>
+                                            <a href="{{ route('report') }}" class="small-box-footer"><i class="fas fa-arrow-circle-right"></i></a>
                                         </div>
+                                        
                                     </div>
                                     <!-- ./col -->
                                     <div class="col-lg-3 col-6">
@@ -51,7 +50,7 @@
                                         <div class="small-box bg-success">
                                             <div class="inner">
                                                 <p>112</p>
-                                                <p>Buisness Department</p>
+                                                <p>Number of applicants applied</p>
                                             </div>
                                             <div class="icon">
                                                 <i class="ion ion-android-contact"></i>
@@ -66,7 +65,7 @@
                                         <div class="small-box bg-warning">
                                             <div class="inner">
                                                 <p>10</p>
-                                                <p>Office of the CEO</p>
+                                                <p>Shortlisted Applicants</p>
                                             </div>
                                             <div class="icon">
                                                 <i class="ion ion-android-contact"></i>                                                </div>
@@ -80,7 +79,7 @@
                                             <div class="small-box bg-danger">
                                                 <div class="inner">
                                                     <p>482</p>
-                                                    <p>Technical Department</p>
+                                                    <p>Selected Applicants</p>
                                                 </div>
                                                 <div class="icon">
                                                     <i class="ion ion-android-contact"></i>                                                </div>
@@ -102,25 +101,38 @@
                                 </b>
                                 <div class="container">
                                     @if(count($vacancies) > 0)
-                                    <div class="row">
-                                        @foreach($vacancies as $vacancy)
-                                        <div class="col-md-3 mb-3">
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">{{ $vacancy->position }}</h5>
-                                                    <p class="card-text">Slots: {{ $vacancy->slot }}</p>
-                                                    <a href="{{ route('showcanidate', $vacancy->id) }}" class="btn btn-primary">View Candidates</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        @endforeach
-                                    </div>
+                                        <table class="table table-striped table-bordered">
+                                            <thead style="background-color: #888; color: white;">
+                                                <tr>
+                                                    <th>Position</th>
+                                                    <th>Slots</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach($vacancies as $vacancy)
+                                                    <tr>
+                                                        <td>{{ $vacancy->position }}</td>
+                                                        <td>{{ $vacancy->slot }}</td>
+                                                        <td class="text-center" style="width: 150px;"> <!-- Adjust the width as needed -->
+                                                            <a href="{{ route('showcanidate', $vacancy->id) }}" class="btn btn-primary btn-sm">View Candidates</a>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                           
+                                        </table>
                                     @else
-                                    <p>No vacancies available.</p>
+                                        <p>No vacancies available.</p>
                                     @endif
                                 </div>
+                                
+                                
+                                
                             </div>
                         </div>
+                        <div><br></div>
+                        <div><br></div>
                     </div>
                 </div> 
             </div>

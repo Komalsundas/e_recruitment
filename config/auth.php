@@ -64,13 +64,13 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+    
+        'users_database' => [
+            'driver' => 'database',
+            'table' => 'users',
+        ],
     ],
-
+    
     /*
     |--------------------------------------------------------------------------
     | Resetting Passwords

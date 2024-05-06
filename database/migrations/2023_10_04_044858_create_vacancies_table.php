@@ -18,11 +18,15 @@ return new class extends Migration
             $table->integer('minQualification');
             $table->string('course');
             $table->string('criteria');
+            $table->decimal('class10marks', 5, 2)->nullable();
+            $table->decimal('class12marks', 5, 2)->nullable();
+            $table->decimal('degreemarks', 5, 2)->nullable();
             $table->string('remuneration');
+            $table->string('grade');
             $table->integer('slot');
             $table->integer('empType');
             $table->string('tor');
-            $table->string('dateline');
+            $table->datetime('dateline');
         });
     }
 
@@ -32,5 +36,10 @@ return new class extends Migration
     public function minQualification()
     {
         return $this->hasOne(MinQualification::class);
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('vacancies');
     }
 };

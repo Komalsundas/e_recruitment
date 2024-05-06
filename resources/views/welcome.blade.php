@@ -21,7 +21,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Results</h5>
                         <p class="card-text">See the result for all the vacancy announced</p>
-                        <a href="#" class="btn btn-success">View all results</a>
+                        <a href="{{ route('result') }}" class="btn btn-success">View all results</a>
                     </div>
                 </div>
         </div>

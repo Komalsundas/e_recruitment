@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Vacancy extends Model
 {
     use HasFactory;
@@ -14,6 +15,7 @@ class Vacancy extends Model
         'course',
         'criteria',
         'remuneration',
+        'grade',
         'slot',
         'empType',
         'tor',

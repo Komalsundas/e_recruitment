@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,16 +13,24 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
-
-        \App\Models\User::factory()->create([
-            'name' => 'Test User',
+        // Create Admin user
+        $admin = User::factory()->create([
+            'name' => 'Admin',
             'email' => 'hr@bt.bt',
-            'password' => '12345678',
+            'password' => Hash::make('12345678'),
         ]);
 
+        // Create Super Admin user
+        $superAdmin = User::factory()->create([
+            'name' => 'Super Admin',
+            'email' => 'itservices@bt.bt',
+            'password' => Hash::make('it@2024'),
+            // Add any other super admin-specific fields here
+        ]);
+
+
+        // Additional seeders..
         $this->call(EmploymentTypeSeeder::class);
         $this->call(QualificationSeeder::class);
-
-    }
+}
 }

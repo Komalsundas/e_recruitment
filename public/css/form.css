@@ -1,0 +1,49 @@
+@import url(https://fonts.googleapis.com/css?family=Nunito);
+@charset "UTF-8";
+
+.custom-card {
+    border: 1px solid #584a4a;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    /* Increased shadow size */
+    transition: 0.3s;
+    padding: 20px;
+    width: 8000px;
+}
+
+.custom-card:hover {
+    box-shadow: 0 12px 20px 0 rgba(0, 0, 0, 0.2);
+    /* Increased shadow size on hover */
+}
+
+.form-control {
+    border: 1px solid #a3a3a3;
+    /* Border for the input fields */
+    padding: 10px;
+    border-radius: 5px;
+    /* Rounded corners for the input fields */
+    transition: 0.3s;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    /* Add box shadow for a 3D effect */
+}
+
+.icon-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 5px 5px;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+.icon-button:hover {
+    background-color: #08b116;
+}
+
+.icon {
+    margin-right: 2px;
+    font-size: 15px;
+}

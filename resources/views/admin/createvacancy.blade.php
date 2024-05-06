@@ -24,33 +24,64 @@
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-{{-- <script>
-    $(document).ready(function() {
-            $("#dateline").datepicker({
-                dateFormat: "dd/mm/yy:mm", // Set the desired date format
-                changeMonth: true,
-                changeYear: true,
-            });
-        });
-</script> --}}
 
 <script>
     $(document).ready(function() {
         flatpickr('.datetime', {
-            enableTime: true,
-            dateFormat: "Y-m-d H:i",
+    enableTime: true,
+    dateFormat: "Y-m-d H:i",
+});
+
+
+        $('#minQuali').change(function() {
+            var selectedQualification = $(this).val();
+            if (selectedQualification === '1') { // If Class 10 is selected
+                $('.class10textbox').show();
+                $('.classxiitextbox').show();
+                $('.degreetextbox').show();
+            } else if (selectedQualification === '2') { // If Class XII is selected
+                $('.class10textbox').show();
+                $('.classxiitextbox').show();
+                $('.degreetextbox').show();
+            } else if (selectedQualification === '3') { // If Degree is selected
+                $('.class10textbox').show();
+                $('.classxiitextbox').show();
+                $('.degreetextbox').show();
+            } else if (selectedQualification === '4') { // If Degree is selected
+                $('.class10textbox').show();
+                $('.classxiitextbox').show();
+                $('.degreetextbox').hide();
+            } else if (selectedQualification === '5') { // If Degree is selected
+                $('.class10textbox').show();
+                $('.classxiitextbox').show();
+                $('.degreetextbox').hide();
+            } else if (selectedQualification === '6') { // If Degree is selected
+                $('.class10textbox').show();
+                $('.classxiitextbox').hide();
+                $('.degreetextbox').hide();
+            } else if (selectedQualification === '7') { // If Degree is selected
+                $('.class10textbox').hide();
+                $('.classxiitextbox').hide();
+                $('.degreetextbox').hide();
+            } else if (selectedQualification === '8') { // If Degree is selected
+                $('.class10textbox').hide();
+                $('.classxiitextbox').hide();
+                $('.degreetextbox').hide();
+            } else { // If no option selected or option other than above
+                $('.class10textbox').hide();
+                $('.classxiitextbox').hide();
+                $('.degreetextbox').hide();
+            }
         });
     });
 </script>
-
-
-
 
 <style>
     .form-control:focus {
         border: 2px solid var(--success) !important;
         box-shadow: unset !important;
     }
+    
 </style>
 
 <div class="div1"></div>
@@ -60,8 +91,6 @@
     <h3 class="display-6">Create Vacancy</h3>
     <div class="border border-success mt-2" style="width: 167px; border-width: 1.5px !important;"></div>
 
-    <!-- <fieldset class="border p-2"> -->
-    <!-- <legend class="float-none w-auto p-2">Create Vacancy</legend> -->
     <form action="{{ route('save-vacancy')}}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="row g-3 mt-4">
@@ -78,16 +107,30 @@
                     @endforeach
                 </select>
             </div>
+        
+            <div class="col-md-12 mb-4">
+                <div class="row">
+                    <div class="col-md-4 class10textbox" style="display: none;">
+                        <label for="class10marks" class="form-label fw-bold">Class 10%</label>
+                        <input type="text" class="form-control form-control" name="class10marks" id="class10marks">
+                    </div>
+                    <div class="col-md-4 classxiitextbox" style="display: none;">
+                        <label for="class12marks" class="form-label fw-bold">Class 12%</label>
+                        <input type="text" class="form-control form-control" name="class12marks" id="class12marks">
+                    </div>
+                    <div class="col-md-4 degreetextbox" style="display: none;">
+                        <label for="degreemarks" class="form-label fw-bold">Degree/Diploma %</label>
+                        <input type="text" class="form-control form-control" name="degreemarks" id="degreemarks">
+                    </div>
+                </div>
+            </div>
+            
+        
             <div class="col-md-6 mb-4">
                 <label for="course" class="form-label fw-bold">Course Specific</label>
                 <textarea type="text" class="form-control form-control" name="course" id="course" required></textarea>
             </div>
-            <div class="col-md-6 mb-4">
-                <label for="criteria" class="form-label fw-bold">Shortlisting Criteria</label>
-                <textarea type="text" class="form-control form-control" name="criteria" id="criteria"
-                    required></textarea>
-            </div>
-
+        
             <div class="col-md-6 mb-4">
                 <label for="empType" class="form-label fw-bold">Employment Type</label>
                 <select class="form-select form-select-sm form-control" name="empType" id="empType" required>
@@ -97,70 +140,63 @@
                     @endforeach
                 </select>
             </div>
+        
             <div class="col-md-6 mb-4">
                 <label for="slot" class="form-label fw-bold">Slots</label>
                 <input type="number" class="form-control form-control" name="slot" id="slot" required>
             </div>
-
+        
             <div class="col-md-6 mb-4">
                 <label for="remuneration" class="form-label fw-bold">Remuneration</label>
-                <textarea type="text" class="form-control form-control" name="remuneration" id="remuneration"
-                    required></textarea>
+                <textarea type="text" class="form-control form-control" name="remuneration" id="remuneration" required></textarea>
             </div>
-            {{--
+        
             <div class="col-md-6 mb-4">
-                <label for="dateline" class="form-label fw-bold">Application Dateline</label>
-                <div class="input-group date">
-                    <span class="input-group-text">
-                        <i class="fas fa-calendar"></i>
-                    </span>
-                    <input type="text" class="form-control form-control" name="dateline" id="dateline" required>
-                </div>
-            </div> --}}
+                <label for="grade" class="form-label fw-bold">Grade</label>
+                <textarea type="text" class="form-control form-control" name="grade" id="grade" required></textarea>
+            </div>
+        
             <div class="col-md-6">
                 <div>
-                    <x-input-label for="dateline" :value="__('Application Dateline')"
-                        class="form-label fw-bold small" />
-                    <input id="dateline" name="dateline" type="text"
-                        class="datetime form-control form-control-sm mt-1 block w-full" required
-                        autocomplete="dateline" />
+                    <x-input-label for="dateline" :value="__('Application Dateline')" class="form-label fw-bold small" />
+                    <input id="dateline" name="dateline" type="text" class="datetime form-control mt-1 block w-full" required autocomplete="dateline">
                     <x-input-error class="mt-2" :messages="$errors->get('dateline')" />
                 </div>
+                
             </div>
-
+        
             <div class="col-md-6 mb-4">
                 <label for="tor" class="form-label fw-bold">TOR</label>
-                <input type="file" class="form-control" id="tor" name="tor" required>
+                <input type="file" class="form-control" id="tor" name="tor"  accept=".pdf" required>
             </div>
+        
             <div class="col-md-2">
                 <div class="text-right mt-2">
                     <label for="tor" class="form-label fw-bold"></label>
-                    <button type="submit" class="btn btn-success px-5"
-                        style="width: unset; border-radius: 4px !important;" id="submitBtn">SAVE</button>
+                    <button type="submit" class="btn btn-success px-5" style="width: unset; border-radius: 4px !important;" id="submitBtn">SAVE</button>
                 </div>
             </div>
-
         </div>
+        
+        
 
     </form>
-    <!-- </fieldset> -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @if(session('success'))
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-                            Swal.fire({
-                                title: '{{ session('title') }}',
-                                text: '{{ session('success') }}',
-                                icon: 'success',
-                                confirmButtonText: 'OK'
-                            }).then((result) => {
-                                if(result.isConfirmed){
-                                    window.location.href = "{{ route('show-vacancy')}}";
-                                }
-                            });
-                        });
+            Swal.fire({
+                title: '{{ session('title') }}',
+                text: '{{ session('success') }}',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            }).then((result) => {
+                if(result.isConfirmed){
+                    window.location.href = "{{ route('show-vacancy')}}";
+                }
+            });
+        });
     </script>
     @endif
 </div>
 @endsection
-

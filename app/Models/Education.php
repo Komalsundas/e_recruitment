@@ -26,6 +26,10 @@ class Education extends Model
         'acc',
         'his',
         'geo',
+        'ent',
+        'agfs',
+        'media',
+        'rigzhung',
         'aggregate',
         'marksheet',
         'applicant_id'

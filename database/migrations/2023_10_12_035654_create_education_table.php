@@ -13,25 +13,29 @@ return new class extends Migration
     {
         Schema::create('education', function (Blueprint $table) {
             $table->id();
-            $table->string('institute');
-            $table->integer('year');
-            $table->string('course_name');
-            $table->integer('grade');
-            $table->char('stream');
-            $table->integer('eng');
-            $table->integer('dzo');
-            $table->integer('math');
+            $table->string('institute')->nullable();
+            $table->integer('year')->nullable();
+            $table->string('course_name')->nullable();
+            $table->integer('grade')->nullable();
+            $table->char('stream')->nullable();
+            $table->integer('eng')->nullable();
+            $table->integer('dzo')->nullable();
+            $table->integer('math')->nullable();
             $table->integer('phy')->nullable();
             $table->integer('che')->nullable();
             $table->integer('bio')->nullable();
             $table->integer('eco')->nullable();
-            $table->integer('it');
+            $table->integer('it')->nullable();
             $table->integer('com')->nullable();
             $table->integer('acc')->nullable();
             $table->integer('his')->nullable();
             $table->integer('geo')->nullable();
-            $table->integer('aggregate');
-            $table->string('marksheet');
+            $table->integer('ent')->nullable();
+            $table->integer('agfs')->nullable();
+            $table->integer('media')->nullable();
+            $table->integer('rigzhung')->nullable();
+            $table->string('aggregate')->nullable();
+            $table->string('marksheet')->nullable();
             $table->integer('applicant_id');
             $table->timestamps();
 

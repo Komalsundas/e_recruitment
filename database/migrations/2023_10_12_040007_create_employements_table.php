@@ -13,15 +13,15 @@ return new class extends Migration
     {
         Schema::create('employements', function (Blueprint $table) {
             $table->id();
-            $table->string('company');
-            $table->string('post');
-            $table->date('from');
-            $table->date('to');
-            $table->string('place');
+            $table->string('company')->nullable();
+            $table->string('post')->nullable();
+            $table->date('from')->nullable();
+            $table->date('to')->nullable();
+            $table->string('place')->nullable();
             // $table->string('reason');
-            $table->string('document'); 
+            $table->string('document')->nullable();
             // $table->string('skills')->nullable();  
-            $table->integer('applicant_id'); 
+            $table->integer('applicant_id')->nullable();
             $table->timestamps();
            
         });

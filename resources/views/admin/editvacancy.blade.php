@@ -12,6 +12,8 @@
 
 
 
+
+
     
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
@@ -28,9 +30,10 @@
     <div class="container">
        
         <fieldset class="border p-2">
-            <legend class="float-none w-auto p-2">Edit Vacancyyyy</legend>
+            <legend class="float-none w-auto p-2">Edit Vacancy</legend>
 
-            <form action="{{ route('save-vacancy') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('update-vacancy', ['id' => $vacancy->id]) }}" method="post" enctype="multipart/form-data">
+
                 @csrf
                 @if ($vacancy)
         <input type="hidden" name="vacancy_id" value="{{ $vacancy->id }}">
@@ -85,6 +88,11 @@
                     </div>
 
                     <div class="col-md-4">
+                        <label for="grade" class="form-label fw-bold small">Grade</label>
+                        <textarea type="text" class="form-control form-control-sm" name="grade" id="grade" required>{{ $vacancy->grade }}</textarea>
+                    </div>
+
+                    <div class="col-md-4">
                         <label for="dateline" class="form-label fw-bold small">Application Dateline</label>
                         <div class="input-group date">
                             <span class="input-group-text">
@@ -108,7 +116,7 @@
 
             <br>
             <!-- Delete Button -->
-            <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            {{-- <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -127,7 +135,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <script>
                 $(document).ready(function () {
                     var rowToDelete;
@@ -154,6 +162,7 @@
                     });
                 });
             </script>
+            
     
             <form action="{{ route('delete-vacancy', $vacancy->id) }}" method="POST" id="deleteForm">
                 @csrf
